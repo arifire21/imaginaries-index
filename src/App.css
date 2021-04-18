@@ -1,38 +1,146 @@
-.App {
-  text-align: center;
+/* --marigold: #f0a221ff;
+--tangerine: #f18805ff;
+--granny-smith-apple: #bdf7b7ff;
+--space-cadet: #202c59ff;
+--ocean-green: #61c9a8ff; */
+/* ---------------------- */
+body {
+  background-color: rgb(255, 243, 176);
+  margin: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+hr {
+  margin: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.app-title {
+  font-size: 45px;
   color: white;
+  font-family: "Aclonica", "Times New Roman";
+  text-align: center;
+  background-color: rgb(158, 42, 43);
 }
 
-.App-link {
-  color: #61dafb;
+.instructions-header {
+  text-align: center;
+  font-size: 30px;
+  font-family: "ShadowsIntoLight", "Times New Roman";
+  text-decoration: underline;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.input-struct {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  font-family: "Trirong";
+  font-size: 16px;
+}
+
+.input-search-struct {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  font-family: "Trirong";
+  font-size: 16px;
+}
+
+.char-info-block {
+  background-color: rgb(255, 243, 176);
+  height: fit-content;
+  /* padding: 100px; */
+}
+
+.char-card {
+  width: 20%;
+  border-style: dotted solid;
+  border-color: rgb(51, 92, 103);
+  margin: 10px;
+  padding: 22px;
+  display: inline-block;
+  justify-content: space-between;
+}
+
+.char-card-name {
+  padding-right: 30px;
+  font-family: "Trirong";
+  text-decoration: underline;
+}
+
+.char-card-sub {
+  font-size: 20px;
+  padding-right: 30px;
+  font-family: "Trirong";
+}
+
+/* .signature-color {
+
+} */
+
+.submit-button {
+  /* width:%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: fixed; */
+  /* left: 50%;
+  right: 50%; */
+  border-radius: 10px;
+  background-color: rgb(51, 92, 103);
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  font-family: "Trirong";
+}
+
+.filter-button {
+  /* width:%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: fixed; */
+  /* left: 50%;
+  right: 50%; */
+  border-radius: 10px;
+  background-color: rgb(51, 92, 103);
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  font-family: "Trirong";
+}
+
+.submit-button:hover {background-color: rgb(33, 59, 66)}
+
+.filter-button:hover {background-color: rgb(33, 59, 66)}
+
+.submitbutton.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+.divide-line {
+  margin: 20px;
+  background-color: rgb(84, 11, 14);
+  height: 5px;
+}
+
+/* TABSSSSSSS */
+
+.tab-list {  border-bottom: 3px solid rgb(84, 11, 14);
+  padding-left: 0;
+}
+
+.tab-list-item {
+  font-family: "Trirong";
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  border: solid rgb(84, 11, 14);
+  background-color: rgb(224, 159, 62);
+  border-width: 2px 2px 0 2px;
 }
