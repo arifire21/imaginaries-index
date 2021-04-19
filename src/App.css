@@ -76,14 +76,13 @@ hr {
 
 } */
 
-.submit-button {
-  /* width:%; */
+.button-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: fixed; */
-  /* left: 50%;
-  right: 50%; */
+}
+
+.submit-button {
   border-radius: 10px;
   background-color: rgb(51, 92, 103);
   padding: 10px;

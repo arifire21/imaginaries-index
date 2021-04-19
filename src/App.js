@@ -22,8 +22,9 @@ class App extends React.Component {
       search_input: "",
 
       disabled: "",
+      selectedOption: "",
 
-      post_confirm : false
+      post_confirm: false
     };
 
     (async () => {
@@ -59,17 +60,17 @@ class App extends React.Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          char_name : this.state.input_name,
-          species : this.state.input_species,
-          age : this.state.input_age,
-          arcanetype : this.state.input_arcanetype,
+          char_name: this.state.input_name,
+          species: this.state.input_species,
+          age: this.state.input_age,
+          arcanetype: this.state.input_arcanetype,
           majik_color: this.state.input_majik_color,
         })
       });
 
       let parsed_response = await response.json();
-      if(parsed_response.success){
-        this.setState({post_confirm : true});
+      if (parsed_response.success) {
+        this.setState({ post_confirm: true });
       }
     })();
   };
@@ -111,36 +112,49 @@ class App extends React.Component {
   //   this.getData();
   // }
 
-//   searchChar = char =>{
-//     const {search_input} = this.state;
-//     // var code = country.code.toLowerCase()
+  //   searchChar = char =>{
+  //     const {search_input} = this.state;
+  //     // var code = country.code.toLowerCase()
 
-//     /*if( search !== "" && country.name.toLowerCase().indexOf( search.toLowerCase() ) === -1 ){
-//         return null
-//     }*/
+  //     /*if( search !== "" && country.name.toLowerCase().indexOf( search.toLowerCase() ) === -1 ){
+  //         return null
+  //     }*/
 
-//     return <Card name={item.name} species={item.species} age={item.age} arcanetype={item.arcanetype} majik_color={item.majik_color} />
-// }
+  //     return <Card name={item.name} species={item.species} age={item.age} arcanetype={item.arcanetype} majik_color={item.majik_color} />
+  // }
 
-// onchange = e =>{
-//   this.setState({ search_input : e.target.value });
-// }
+  // onchange = e =>{
+  //   this.setState({ search_input : e.target.value });
+  // }
 
   post_confirmation = () => {
-    if(this.state.post_confirm){
+    if (this.state.post_confirm) {
       return <p>POSTED SUCCESSFULLY RELOAD TO SEE CHANGES</p>
     }
-    else{
+    else {
       return <div></div>;
     }
   }
 
   check_contents = () => {
-    if(this.state.input_name === '' || this.state.input_species === '' || this.state.input_age === '' || this.state.input_arcanetype === '' || this.state.input_majik_color === ''){
-      {console.log("is empty")};
+    if (this.state.input_name === '' || this.state.input_species === '' || this.state.input_age === '' || this.state.input_arcanetype === '' || this.state.input_majik_color === '') {
+      { console.log("is empty") };
       <div>className={`submit-button.disabled ${this.state.disabled}`}</div>
     }
   }
+
+  // for radio button tests
+  handleOptionChange = changeEvent => {
+    this.setState({
+      selectedOption: changeEvent.target.value
+    });
+  };
+
+  handleFormSubmit = formSubmitEvent => {
+    formSubmitEvent.preventDefault();
+    console.log("You have submitted:", this.state.selectedOption);
+  };
+  //radio tests
 
   input_form = () => {
     return (
@@ -151,44 +165,73 @@ class App extends React.Component {
         <div className="input-struct">
           <div>
             <label for="name">Name: </label>
-            {/* <p>name</p> */}
             <input type="text" value={this.state.input_name}
               onChange={(e) => this.setState({ input_name: e.target.value })}
             />
           </div>
           <div>
-          <label for="species">Species: </label>
-          {/* <p>phone</p> */}
-          <input type="text" value={this.state.input_species}
-            onChange={(e) => this.setState({ input_species: e.target.value })}
-          />
+            <label for="species">Species: </label>
+            <input type="text" value={this.state.input_species}
+              onChange={(e) => this.setState({ input_species: e.target.value })}
+            />
           </div>
           <div>
-          <label for="age">Age: </label>
-          <input type="text" value={this.state.input_age}
-            onChange={(e) => this.setState({ input_age: e.target.value })}
-          />
+            <label for="age">Age: </label>
+            <input type="text" value={this.state.input_age}
+              onChange={(e) => this.setState({ input_age: e.target.value })}
+            />
           </div>
           <div>
-          <label for="arcane">Arcanetype: </label>
-          {/* <p>phone</p> */}
-          <input type="text" value={this.state.input_arcanetype}
-            onChange={(e) => this.setState({ input_arcanetype: e.target.value })}
-          />
+            <label for="arcane">Arcanetype: </label>
+            <input type="text" value={this.state.input_arcanetype}
+              onChange={(e) => this.setState({ input_arcanetype: e.target.value })}
+            />
           </div>
           <div>
-          <label for="species">Majik Color: </label>
-          {/* <p>phone</p> */}
-          <input type="text" value={this.state.input_majik_color}
-            onChange={(e) => this.setState({ input_majik_color: e.target.value })}
-          />
-        </div>
-        </div>
+            <label for="species">Majik Color: </label>
+            <input type="text" value={this.state.input_majik_color}
+              onChange={(e) => this.setState({ input_majik_color: e.target.value })}
+            />
+          </div>
 
-        <div>
+          <form onSubmit={this.handleFormSubmit}>
+
+            <label>Story/Plot Importance: </label>
+            <div className="form-check">
+              <label>
+                <input
+                  type="radio"
+                  name="react-tips"
+                  value="option1"
+                  checked={this.state.selectedOption === "option1"}
+                  onChange={this.handleOptionChange}
+                  className="form-check-input"
+                />
+              Main
+              </label>
+            </div>
+
+            <div className="form-check">
+              <label>
+                <input
+                  type="radio"
+                  name="react-tips"
+                  value="option2"
+                  checked={this.state.selectedOption === "option2"}
+                  onChange={this.handleOptionChange}
+                  className="form-check-input"
+                />
+              Secondary
+              </label>
+            </div>
+
+          </form>
+        </div> {/*end input structure*/}
+
+        <div className="button-container">
           <button className="submit-button"
-            onMouseEnter={()=>this.check_contents()} onClick={() => this.input_form_helper()}>Submit Character Data
-          </button>
+            onMouseEnter={() => this.check_contents()} onClick={() => this.input_form_helper()}>Submit Character Data
+        </button>
         </div>
 
       </div>
@@ -207,7 +250,7 @@ class App extends React.Component {
             <input type="text" value={this.state.search_input} placeholder="search..."
               onChange={(e) => this.setState({ input_name: e.target.value })}
             />
-           </div>
+          </div>
         </div>
 
         <div>
@@ -217,8 +260,8 @@ class App extends React.Component {
         </div>
 
       </div>
-  );
-};
+    );
+  };
 
   render() {
     return (
@@ -227,39 +270,39 @@ class App extends React.Component {
           Imaginaries Index
         </h1>
 
-        <Tabs> 
-        {/* TAB 1 */}
-       <div label="Create"> 
-         <div className="char-info-block">
-          {this.input_form()}
-          {this.state.post_confirm ? <div>  data inserted -- reload to refresh list!</div> : <div></div>}
-          {/* <div className="divide-line"></div>
+        <Tabs>
+          {/* TAB 1 */}
+          <div label="Create">
+            <div className="char-info-block">
+              {this.input_form()}
+              {this.state.post_confirm ? <div>  data inserted -- reload to refresh list!</div> : <div></div>}
+              {/* <div className="divide-line"></div>
           {this.filter_input()} */}
-          {/* {this.state.post_confirm2 ? <div>data filtered!</div> : <div></div>} */}
+              {/* {this.state.post_confirm2 ? <div>data filtered!</div> : <div></div>} */}
+            </div>
+            {/* TODO: put filtered card below */}
           </div>
-          {/* TODO: put filtered card below */}
-       </div> 
-       {/* TAB 2 */}
-       <div label="Character List"> 
-        <div><h2 className='instructions-header'>
-            List of Characters
+          {/* TAB 2 */}
+          <div label="Character List">
+            <div><h2 className='instructions-header'>
+              List of Characters
           </h2></div>
-         <div className="char-info-block">
-            {this.filter_input()}
-            <div className="divide-line"></div>
-            {this.render_helper()}            
+            <div className="char-info-block">
+              {this.filter_input()}
+              <div className="divide-line"></div>
+              {this.render_helper()}
+            </div>
           </div>
-       </div> 
-        </Tabs> 
+        </Tabs>
 
         <hr></hr>
         {/* old display */}
         {/* <div className="char-info-block"> */}
-          {/* {this.input_form()}
+        {/* {this.input_form()}
           {this.state.post_confirm ? <div>data inserted -- reload to refresh list!</div> : <div></div>} */}
-          {/* <p>Full List:</p>
+        {/* <p>Full List:</p>
           {this.render_helper()} */}
-          {/* {this.filter_input()}
+        {/* {this.filter_input()}
           {this.state.post_confirm ? <div>data filtered!</div> : <div></div>}
           TODO: put filtered card below */}
         {/* </div> */}
