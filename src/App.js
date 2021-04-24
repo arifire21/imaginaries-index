@@ -75,57 +75,7 @@ class App extends React.Component {
     })();
   };
 
-
-
-  // handleInputChange = event => {
-  //   const search_input = event.target.value;
-
-  //   this.setState(prevState => {
-  //     const filteredData = prevState.data.filter(element => {
-  //       return element.name.toLowerCase().includes(search_input.toLowerCase());
-  //     });
-
-  //     return {
-  //       search_input,
-  //       filteredData
-  //     };
-  //   });
-  // };
-
-  // getData = () => {
-  //   fetch(`http://localhost:4000/filterData`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       const { search_input } = this.state;
-  //       const filteredData = data.filter(element => {
-  //         return element.name.toLowerCase().includes(search_input.toLowerCase());
-  //       });
-
-  //       this.setState({
-  //         data,
-  //         filteredData
-  //       });
-  //     });
-  // };
-
-  // componentWillMount() {
-  //   this.getData();
-  // }
-
-  //   searchChar = char =>{
-  //     const {search_input} = this.state;
-  //     // var code = country.code.toLowerCase()
-
-  //     /*if( search !== "" && country.name.toLowerCase().indexOf( search.toLowerCase() ) === -1 ){
-  //         return null
-  //     }*/
-
-  //     return <Card name={item.name} species={item.species} age={item.age} arcanetype={item.arcanetype} majik_color={item.majik_color} />
-  // }
-
-  // onchange = e =>{
-  //   this.setState({ search_input : e.target.value });
-  // }
+  //todo: search function
 
   post_confirmation = () => {
     if (this.state.post_confirm) {
@@ -182,13 +132,13 @@ class App extends React.Component {
             />
           </div>
           <div>
-            <label for="arcane">Arcanetype: </label>
+            <label for="arcane">Magic: </label>
             <input type="text" value={this.state.input_arcanetype}
               onChange={(e) => this.setState({ input_arcanetype: e.target.value })}
             />
           </div>
           <div>
-            <label for="species">Majik Color: </label>
+            <label for="species">Magic Color: </label>
             <input type="text" value={this.state.input_majik_color}
               onChange={(e) => this.setState({ input_majik_color: e.target.value })}
             />
