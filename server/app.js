@@ -17,6 +17,7 @@ app.get("/",(req, res)=>{
 app.post('/post',(req, res)=>{
     console.log("this is the posted name: " + req.body.contact_name);
     (async function(){
+        try {
         await client.connect();
         const db = client.db('imaginaries');
         const collection = db.collection('main-chars');
@@ -31,12 +32,16 @@ app.post('/post',(req, res)=>{
 
         console.log("db output: " + db_response);
         res.json({"success" : true});
+        } catch (error) {
+            console.log("error in try block: " + error);
+        }
     })();
 });
 
 app.post("/filterData", (req, res) => {
     let name = req.body.char_name;
     (async function(){
+        try {
         await client.connect();
         const db = client.db('imaginaries');
         const collection = db.collection('main-chars');
@@ -44,12 +49,16 @@ app.post("/filterData", (req, res) => {
         const find_result = await collection.find({"name" : name}).toArray();
         console.log(find_result);
         res.json({"success" : true, "data" : find_result[0] });
+        } catch (error) {
+            console.log("error in try block: " + error);
+        }
     })();
 });
 
 
 app.get("/getAll", (req, res) => {
     (async function(){
+        try {
         await client.connect();
         const db = client.db('imaginaries');
         const collection = db.collection('main-chars');
@@ -57,6 +66,9 @@ app.get("/getAll", (req, res) => {
         const all_results = await collection.find({}).toArray();
         console.log(all_results);
         res.json({"success" : true, data: all_results});
+        } catch (error) {
+            console.log("error in try block: " + error);
+        }
     })();
 });
 
