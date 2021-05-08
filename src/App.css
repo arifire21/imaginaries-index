@@ -93,13 +93,9 @@ hr {
 }
 
 .filter-button {
-  /* width:%; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: fixed; */
-  /* left: 50%;
-  right: 50%; */
   border-radius: 10px;
   background-color: rgb(51, 92, 103);
   padding: 10px;
@@ -113,7 +109,7 @@ hr {
 
 .filter-button:hover {background-color: rgb(33, 59, 66)}
 
-.submitbutton.disabled {
+.submit-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   }

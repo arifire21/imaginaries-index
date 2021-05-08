@@ -14,10 +14,11 @@ function Card(props) {
             <p>
                 Species: {props.species} <br />
                 Age: {props.age}<br />
-                Arcanetype: {props.arcanetype}<br />
+                Magic: {props.arcanetype}<br />
                 {/* <div className="signature-color"> */}
-                    Majik Color: {props.majik_color}
+                    Magic Color: {props.majik_color}<br />
                 {/* </div> */}
+                Importance: {props.importance}
             </p>
         </div>
     </div>

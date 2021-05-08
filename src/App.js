@@ -16,13 +16,13 @@ class App extends React.Component {
       input_age: "",
       input_arcanetype: "",
       input_majik_color: "",
-      // input_importance: false,
+      selected_radio_option: "",
+      
       data: [],
       filtered_data: [],
       search_input: "",
 
-      disabled: "",
-      selectedOption: "",
+      
 
       post_confirm: false
     };
@@ -65,6 +65,7 @@ class App extends React.Component {
           age: this.state.input_age,
           arcanetype: this.state.input_arcanetype,
           majik_color: this.state.input_majik_color,
+          importance: this.state.selected_radio_option,
         })
       });
 
@@ -86,26 +87,26 @@ class App extends React.Component {
     }
   }
 
-  check_contents = () => {
-    if (this.state.input_name === '' || this.state.input_species === '' || this.state.input_age === '' || this.state.input_arcanetype === '' || this.state.input_majik_color === '') {
-      { console.log("is empty") };
-      <div>className={`submit-button.disabled ${this.state.disabled}`}</div>
-    }
-  }
+  //test for disabled cursor thingy
+  // check_contents = () => {
+  //   if (this.state.input_name === '' || this.state.input_species === '' || this.state.input_age === '' || this.state.input_arcanetype === '' || this.state.input_majik_color === '') {
+  //     { console.log("is empty") };
+  //     <div>className={`submit-button:disabled`}</div>
+  //   }
+  // }
 
   // for radio button tests
   handleOptionChange = changeEvent => {
     this.setState({
-      selectedOption: changeEvent.target.value
+      selected_radio_option: changeEvent.target.value
     });
   };
-
+  //still radio test
   handleFormSubmit = formSubmitEvent => {
     formSubmitEvent.preventDefault();
-    console.log("You have submitted:", this.state.selectedOption);
+    console.log("You have submitted:", this.state.selected_radio_option);
   };
   //radio tests
-
   input_form = () => {
     return (
       <div>
@@ -127,7 +128,8 @@ class App extends React.Component {
           </div>
           <div>
             <label for="age">Age: </label>
-            <input type="text" value={this.state.input_age}
+            <input type="number" value={this.state.input_age} inputMode="numeric"
+              text="Please insert a number"
               onChange={(e) => this.setState({ input_age: e.target.value })}
             />
           </div>
@@ -151,10 +153,10 @@ class App extends React.Component {
               <label>
                 <input
                   type="radio"
-                  name="react-tips"
                   value="option1"
-                  checked={this.state.selectedOption === "option1"}
-                  onChange={this.handleOptionChange}
+                  checked={this.state.selected_radio_option === "option1"}
+                  // onChange={this.handleOptionChange}
+                  onChange={(e) => this.setState({ selected_radio_option: e.target.value })}
                   className="form-check-input"
                 />
               Main
@@ -165,10 +167,10 @@ class App extends React.Component {
               <label>
                 <input
                   type="radio"
-                  name="react-tips"
                   value="option2"
-                  checked={this.state.selectedOption === "option2"}
-                  onChange={this.handleOptionChange}
+                  checked={this.state.selected_radio_option === "option2"}
+                  // onChange={this.handleOptionChange}
+                  onChange={(e) => this.setState({ selected_radio_option: e.target.value })}
                   className="form-check-input"
                 />
               Secondary
@@ -180,11 +182,15 @@ class App extends React.Component {
 
         <div className="button-container">
           <button className="submit-button"
-            onMouseEnter={() => this.check_contents()} onClick={() => this.input_form_helper()}>Submit Character Data
-        </button>
+            disabled={this.state.input_name.length<1}
+            disabled={this.state.input_species.length<1}
+            disabled={this.state.input_age.length<1}
+            disabled={this.state.input_arcanetype.length<1}
+            disabled={this.state.input_majik_color.length<1}
+            onClick={() => this.input_form_helper()}>Submit Character Data
+          </button>
         </div>
-
-      </div>
+      </div> //final input form div
     );
   };
 

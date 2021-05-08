@@ -15,7 +15,7 @@ app.get("/",(req, res)=>{
 
 
 app.post('/post',(req, res)=>{
-    console.log("this is the posted name: " + req.body.contact_name);
+    // console.log("this is the posted name: " + req.body.contact_name);
     (async function(){
         try {
         await client.connect();
@@ -27,7 +27,8 @@ app.post('/post',(req, res)=>{
             "species" : req.body.species,
             "age" : req.body.age,
             "arcanetype" : req.body.arcanetype,
-            "majik_color" : req.body.majik_color
+            "majik_color" : req.body.majik_color,
+            "importance" : req.body.importance,
         })
 
         console.log("db output: " + db_response);
@@ -75,10 +76,3 @@ app.get("/getAll", (req, res) => {
 app.listen(5000, function(){
     console.log("server running on port 5000");
 });
-
-
-
-
-
-
-
