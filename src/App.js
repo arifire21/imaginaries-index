@@ -1,9 +1,8 @@
-// import logo from './logo.svg';
 import './App.css';
-import Card from './components/card';
 import React from 'react';
+import Card from './components/card';
 import Tabs from "./components/tabs";
-// import mainchars from 'main-chars.json';
+// import NumericInput from 'react-numeric-input';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,9 +20,6 @@ class App extends React.Component {
       data: [],
       filtered_data: [],
       search_input: "",
-
-      
-
       post_confirm: false
     };
 
@@ -115,32 +111,37 @@ class App extends React.Component {
         </h2></div>
         <div className="input-struct">
           <div>
-            <label for="name">Name: </label>
+            <label>Name: </label>
             <input type="text" value={this.state.input_name}
               onChange={(e) => this.setState({ input_name: e.target.value })}
             />
           </div>
           <div>
-            <label for="species">Species: </label>
+            <label>Species: </label>
             <input type="text" value={this.state.input_species}
               onChange={(e) => this.setState({ input_species: e.target.value })}
             />
           </div>
           <div>
-            <label for="age">Age: </label>
-            <input type="number" value={this.state.input_age} inputMode="numeric"
-              text="Please insert a number"
-              onChange={(e) => this.setState({ input_age: e.target.value })}
+            <label>Age: </label>
+            <input
+              type="number"
+              min={0}
+              value={this.state.input_age}
+              placeholder= "0"
+              title="Please enter a number."
+              onChange={(e) => this.setState({ input_species: e.target.value })}
             />
+           {/* TODO FIX THIS FORMATTING AND TRY DIVS FOR LABELS */}
           </div>
           <div>
-            <label for="arcane">Magic: </label>
+            <label>Magic: </label>
             <input type="text" value={this.state.input_arcanetype}
               onChange={(e) => this.setState({ input_arcanetype: e.target.value })}
             />
           </div>
           <div>
-            <label for="species">Magic Color: </label>
+            <label>Magic Color: </label>
             <input type="text" value={this.state.input_majik_color}
               onChange={(e) => this.setState({ input_majik_color: e.target.value })}
             />
