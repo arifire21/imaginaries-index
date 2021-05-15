@@ -32,6 +32,16 @@ class App extends React.Component {
     })();
   }
 
+  checkNumber(e){
+    const re = /^[0-9\b]+/;
+
+    // if value is not blank, then test the regex
+    if (e.target.value === '' || re.test(e.target.value)) {
+        console.log('yup its a number')
+       this.setState({input_age: e.target.value})
+    }
+  }
+
   render_helper = () => {
     if (this.state.apiResponse.hasOwnProperty('success')) {
       //this code runs if api call was successful and we have the response in this.state.apiResponse
@@ -43,7 +53,7 @@ class App extends React.Component {
 
       //end if block
     } else {
-      return <p>content not loaded, make sure node is running</p>;
+      return <p>  content not loaded, make sure node is running</p>;
     }
   };
 
@@ -83,14 +93,6 @@ class App extends React.Component {
     }
   }
 
-  //test for disabled cursor thingy
-  // check_contents = () => {
-  //   if (this.state.input_name === '' || this.state.input_species === '' || this.state.input_age === '' || this.state.input_arcanetype === '' || this.state.input_majik_color === '') {
-  //     { console.log("is empty") };
-  //     <div>className={`submit-button:disabled`}</div>
-  //   }
-  // }
-
   // for radio button tests
   handleOptionChange = changeEvent => {
     this.setState({
@@ -124,15 +126,19 @@ class App extends React.Component {
           </div>
           <div>
             <label>Age: </label>
-            <input
-              type="number"
-              min={0}
-              value={this.state.input_age}
-              placeholder= "0"
-              title="Please enter a number."
-              onChange={(e) => this.setState({ input_species: e.target.value })}
-            />
-           {/* TODO FIX THIS FORMATTING AND TRY DIVS FOR LABELS */}
+                <input
+                  size={5}
+                  type="text" //needs to be text for maxLength to work
+                  inputMode="numeric"
+                  min={0}     //lowest val allowed
+                  maxLength={4}
+                  value={this.state.input_age}
+                  placeholder= "0"
+                  title="Please enter a number"
+                  onChange={(e) => this.checkNumber(e)}   //this method also uses setState
+
+                />
+           {/* TODO TRY DIVS FOR LABELS */}
           </div>
           <div>
             <label>Magic: </label>
@@ -174,7 +180,7 @@ class App extends React.Component {
                   onChange={(e) => this.setState({ selected_radio_option: e.target.value })}
                   className="form-check-input"
                 />
-              Secondary
+              Supporting
               </label>
             </div>
 
@@ -183,12 +189,9 @@ class App extends React.Component {
 
         <div className="button-container">
           <button className="submit-button"
-            disabled={this.state.input_name.length<1}
-            disabled={this.state.input_species.length<1}
-            disabled={this.state.input_age.length<1}
-            disabled={this.state.input_arcanetype.length<1}
-            disabled={this.state.input_majik_color.length<1}
-            onClick={() => this.input_form_helper()}>Submit Character Data
+            disabled={this.state.input_name.length<1 || this.state.input_species.length<1 || this.state.input_age.length<1 || this.state.input_arcanetype.length<1 || this.state.input_majik_color.length<1}
+            title="Please fill in all form elements"
+            onClick={() => this.input_form_helper()}>Submit Character Info
           </button>
         </div>
       </div> //final input form div
@@ -198,7 +201,7 @@ class App extends React.Component {
   filter_input = () => {
     return (
       <div>
-        <div><h2 className='instructions-header'>
+        <div><h2 className='instructions-header-sub'>
           Type character name to filter results
         </h2></div>
         <div className="input-search-struct">
@@ -252,7 +255,6 @@ class App extends React.Component {
           </div>
         </Tabs>
 
-        <hr></hr>
         {/* old display */}
         {/* <div className="char-info-block"> */}
         {/* {this.input_form()}
