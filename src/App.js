@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import Card from './components/card';
 import Tabs from "./components/tabs";
-// import NumericInput from 'react-numeric-input';
+import DropdownWeightSelection from "./components/dropdown_weight";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,13 +15,19 @@ class App extends React.Component {
       input_age: "",
       input_arcanetype: "",
       input_majik_color: "",
-      selected_radio_option: "",
       
+      input_left_eye_color: "",
+      input_right_eye_color: "",
+      selected_measurement: "",
+      selected_radio_option: "",
+
       data: [],
       filtered_data: [],
       search_input: "",
       post_confirm: false
     };
+
+    //-----------------------------------------------------------------//
 
     (async () => {
       let response = await fetch('http://localhost:5000/getAll');
@@ -46,7 +52,7 @@ class App extends React.Component {
     if (this.state.apiResponse.hasOwnProperty('success')) {
       //this code runs if api call was successful and we have the response in this.state.apiResponse
       const mapped_cards = this.state.apiResponse.data.map((item) => {
-        return <Card name={item.name} species={item.species} age={item.age} arcanetype={item.arcanetype} majik_color={item.majik_color} />
+        return <Card name={item.name} species={item.species} age={item.age} arcanetype={item.arcanetype} majik_color={item.majik_color} left_eye_color={item.left_eye_color} right_eye_color={item.right_eye_color} />
       });
       return <div>{mapped_cards}</div>;
 
@@ -71,6 +77,9 @@ class App extends React.Component {
           age: this.state.input_age,
           arcanetype: this.state.input_arcanetype,
           majik_color: this.state.input_majik_color,
+          mes_weight: this.state.selected_measurement,
+          right_eye_color: this.state.input_right_eye_color,
+          left_eye_color: this.state.input_left_eye_color,
           importance: this.state.selected_radio_option,
         })
       });
@@ -152,6 +161,25 @@ class App extends React.Component {
               onChange={(e) => this.setState({ input_majik_color: e.target.value })}
             />
           </div>
+        </div> {/*end input structure*/}
+
+        <div className="input-struct-row2">
+
+
+
+          <div>
+            <label>Left Eye Color: </label>
+            <input type="text" value={this.state.input_left_eye_color} size={10}
+              onChange={(e) => this.setState({ input_left_eye_color: e.target.value })}
+            />
+          </div>
+          
+          <div>
+            <label>Right Eye Color: </label>
+            <input type="text" value={this.state.input_right_eye_color} size={10}
+              onChange={(e) => this.setState({ input_right_eye_color: e.target.value })}
+            />
+          </div>
 
           <form onSubmit={this.handleFormSubmit}>
 
@@ -185,11 +213,14 @@ class App extends React.Component {
             </div>
 
           </form>
-        </div> {/*end input structure*/}
-
+        </div>
+      
         <div className="button-container">
           <button className="submit-button"
-            disabled={this.state.input_name.length<1 || this.state.input_species.length<1 || this.state.input_age.length<1 || this.state.input_arcanetype.length<1 || this.state.input_majik_color.length<1}
+            disabled={ this.state.input_name.length<1 || this.state.input_species.length<1 || this.state.input_age.length<1 
+              || this.state.input_arcanetype.length<1 || this.state.input_majik_color.length<1
+              || this.state.selected_radio_option.length<1 || this.state.input_right_eye_color.length<1
+              || this.state.input_left_eye_color.length<1 }
             title="Please fill in all form elements"
             onClick={() => this.input_form_helper()}>Submit Character Info
           </button>

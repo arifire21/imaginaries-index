@@ -27,6 +27,8 @@ app.post('/post',(req, res)=>{
             "species" : req.body.species,
             "age" : req.body.age,
             "arcanetype" : req.body.arcanetype,
+            "left_eye_color" :req.body.left_eye_color,
+            "right_eye_color" : req.body.right_eye_color,
             "majik_color" : req.body.majik_color,
             "importance" : req.body.importance,
         })
@@ -34,7 +36,7 @@ app.post('/post',(req, res)=>{
         console.log("db output: " + db_response);
         res.json({"success" : true});
         } catch (error) {
-            console.log("error in try block: " + error);
+            console.log("error in try block -- post: " + error);
         }
     })();
 });
@@ -51,7 +53,7 @@ app.post("/filterData", (req, res) => {
         console.log(find_result);
         res.json({"success" : true, "data" : find_result[0] });
         } catch (error) {
-            console.log("error in try block: " + error);
+            console.log("error in try block -- filter data: " + error);
         }
     })();
 });
@@ -68,7 +70,7 @@ app.get("/getAll", (req, res) => {
         console.log(all_results);
         res.json({"success" : true, data: all_results});
         } catch (error) {
-            console.log("error in try block: " + error);
+            console.log("error in try block -- getAll: " + error);
         }
     })();
 });
