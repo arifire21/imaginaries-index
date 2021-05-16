@@ -31,6 +31,8 @@ app.post('/post',(req, res)=>{
             "right_eye_color" : req.body.right_eye_color,
             "majik_color" : req.body.majik_color,
             "importance" : req.body.importance,
+            "weight" : req.body.weight,
+            "mes_weight" : req.body.mes_weight,
         })
 
         console.log("db output: " + db_response);

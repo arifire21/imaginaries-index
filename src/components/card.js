@@ -23,7 +23,9 @@ function Card(props) {
                     {/* </div> */}
                     Importance: {props.importance}<br />    {/*this is a test val, don't leave this here*/}
                     Eye Color (Left): {props.left_eye_color}<br /> 
-                    Eye Color (Right): {props.right_eye_color}
+                    Eye Color (Right): {props.right_eye_color}<br />
+                    weight test: {props.weight} <br />
+                    mes test: {props.mes_weight}
                 </p>
             </div>
         </div>

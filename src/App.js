@@ -18,6 +18,7 @@ class App extends React.Component {
       
       input_left_eye_color: "",
       input_right_eye_color: "",
+      input_weight: "",
       selected_measurement: "",
       selected_radio_option: "",
 
@@ -38,7 +39,7 @@ class App extends React.Component {
     })();
   }
 
-  checkNumber(e){
+  checkAgeNumber(e){
     const re = /^[0-9\b]+/;
 
     // if value is not blank, then test the regex
@@ -48,14 +49,23 @@ class App extends React.Component {
     }
   }
 
+  checkWeightNumber(e){
+    const re = /^\-{0,1}\d+(.\d+){0,1}$/;
+
+    // if value is not blank, then test the regex
+    if (e.target.value === '' || re.test(e.target.value)) {
+        console.log('yup its a number')
+       this.setState({input_weight: e.target.value})
+    }
+  }
+
   render_helper = () => {
     if (this.state.apiResponse.hasOwnProperty('success')) {
       //this code runs if api call was successful and we have the response in this.state.apiResponse
       const mapped_cards = this.state.apiResponse.data.map((item) => {
-        return <Card name={item.name} species={item.species} age={item.age} arcanetype={item.arcanetype} majik_color={item.majik_color} left_eye_color={item.left_eye_color} right_eye_color={item.right_eye_color} />
+        return <Card name={item.name} species={item.species} age={item.age} arcanetype={item.arcanetype} majik_color={item.majik_color} left_eye_color={item.left_eye_color} right_eye_color={item.right_eye_color} mes_weight={item.selected_measurement} />
       });
       return <div>{mapped_cards}</div>;
-
 
       //end if block
     } else {
@@ -77,6 +87,7 @@ class App extends React.Component {
           age: this.state.input_age,
           arcanetype: this.state.input_arcanetype,
           majik_color: this.state.input_majik_color,
+          weight: this.state.input_weight,
           mes_weight: this.state.selected_measurement,
           right_eye_color: this.state.input_right_eye_color,
           left_eye_color: this.state.input_left_eye_color,
@@ -144,8 +155,7 @@ class App extends React.Component {
                   value={this.state.input_age}
                   placeholder= "0"
                   title="Please enter a number"
-                  onChange={(e) => this.checkNumber(e)}   //this method also uses setState
-
+                  onChange={(e) => this.checkAgeNumber(e)}   //this method also uses setState
                 />
            {/* TODO TRY DIVS FOR LABELS */}
           </div>
@@ -165,7 +175,26 @@ class App extends React.Component {
 
         <div className="input-struct-row2">
 
+          <div>
+            <label>Weight: </label>
+              <input
+                size={5}
+                type="text" //needs to be text for maxLength to work
+                inputMode="numeric"
+                min={0}     //lowest val allowed
+                maxLength={5}
+                value={this.state.input_weight}
+                placeholder= "00.00"
+                title="Please enter a number"
+                onChange={(e) => this.checkWeightNumber(e)}   //this method also uses setState
+              />
+          </div>
 
+          <DropdownWeightSelection
+            value={this.state.selected_measurement}
+            onChange={(e) => this.setState({ selected_measurement: e.target.value })}
+          />
+          {/* setup is in component */}
 
           <div>
             <label>Left Eye Color: </label>
