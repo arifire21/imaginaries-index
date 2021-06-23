@@ -2,8 +2,8 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 const weight_options = [
-    { text: 'km',
-      value: 'km',
+    { text: 'kg',
+      value: 'kg',
     },
     { text: 'lbs',
       value: 'lbs',
