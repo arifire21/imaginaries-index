@@ -1,3 +1,14 @@
+# Imaginaries Index Screenshots
+## March 2021 Submission Demo
+
+![Input Form (Tab 1)](https://raw.githubusercontent.com/arifire21/imaginaries-index/master/screenshots/sc1.jpg)
+Input Form (Tab 1)
+
+![Character Display (Tab 2)](https://raw.githubusercontent.com/arifire21/imaginaries-index/master/screenshots/sc2.jpg)
+Character Display (Tab 2)
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
