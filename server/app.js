@@ -15,7 +15,6 @@ app.get("/",(req, res)=>{
 
 
 app.post('/post',(req, res)=>{
-    // console.log("this is the posted name: " + req.body.contact_name);
     (async function(){
         try {
         await client.connect();

@@ -8,12 +8,12 @@ const height_options = [
 ]
 
 const DropdownWeightSelection = () => (
-    <Dropdown
-      placeholder='Measurement...'
-      fluid
-      selection
-      options={height_options}
-    />
-  )
+  <Dropdown
+    placeholder='Measurement...'
+    fluid
+    selection
+    options={height_options}
+  />
+)
   
   export default DropdownWeightSelection
